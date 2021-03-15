@@ -1,12 +1,15 @@
 import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { gsap, Power0 } from "gsap";
+import { gsap, Power0, Power1, Power2, Power3, Circ, SteppedEase } from "gsap";
 import * as dat from "dat.gui";
 
 const gui = new dat.GUI();
-gui.hide()
 
+let debugObj = {
+  rotationDuration: 1,
+  easing: Power2,
+};
 
 // Textures
 
@@ -19,7 +22,6 @@ loadingManager.onError = () => {};
 
 const textureLoader = new THREE.CubeTextureLoader();
 
-
 // const colorTexture = textureLoader.load("/textures/space.jpg");
 const envMap = textureLoader.load([
   "/textures/environmentMaps/0/px.png",
@@ -30,7 +32,6 @@ const envMap = textureLoader.load([
   "/textures/environmentMaps/0/nz.png",
 ]);
 envMap.encoding = THREE.sRGBEncoding;
-
 
 /**
  * Base
@@ -46,7 +47,6 @@ scene.environment = envMap;
 /**
  * Object
  */
-
 
 /**
  * Sizes
@@ -88,7 +88,6 @@ scene.rotation.x = -1.37;
 scene.rotation.y = 0;
 scene.rotation.z = 0;
 
-
 scene.add(camera);
 
 // Controls
@@ -107,10 +106,10 @@ window.addEventListener("mousemove", (e) => {
   cursor.x = e.clientX / sizes.width - 0.5;
   cursor.y = -(e.clientY / sizes.height - 0.5);
   gsap.to(camera.rotation, {
-    x: (-cursor.y * 0.1),
+    x: -cursor.y * 0.1,
     y: cursor.x * 0.1,
-    ease: Power0.easeOut,
-    duration: 1
+    ease: Power0.easeIn,
+    duration: debugObj.rotationDuration,
   });
 });
 /**
@@ -122,12 +121,24 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-
 // gui.add(scene.rotation, 'x').min(-10).max(10).step(0.01)
 // gui.add(scene.rotation, 'y').min(-10).max(10).step(0.01)
 // gui.add(scene.rotation, 'z').min(-10).max(10).step(0.01)
 // console.log(camera.rotation);
 
+gui.add(debugObj, "rotationDuration").min(0).max(3).step(0.01);
+// gui
+//   .add(debugObj, "easing", {
+//     "Power0":Power0,
+//     "Power1":Power1,
+//     "Power2":Power2,
+//     "Power3":Power3,
+//     "Circ":Circ,
+//     "SteppedEase":SteppedEase
+//   }).onFinishChange(obj => {
+//     debugObj.easing = obj
+//     console.log(obj);
+//   })
 /**
  * Animate
  */
