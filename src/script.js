@@ -24,12 +24,12 @@ const textureLoader = new THREE.CubeTextureLoader();
 
 // const colorTexture = textureLoader.load("/textures/space.jpg");
 const envMap = textureLoader.load([
-  "/textures/environmentMaps/0/px.png",
-  "/textures/environmentMaps/0/nx.png",
-  "/textures/environmentMaps/0/py.png",
-  "/textures/environmentMaps/0/ny.png",
-  "/textures/environmentMaps/0/pz.png",
-  "/textures/environmentMaps/0/nz.png",
+  "/textures/environmentMaps/1/1024/px.png",
+  "/textures/environmentMaps/1/1024/nx.png",
+  "/textures/environmentMaps/1/1024/py.png",
+  "/textures/environmentMaps/1/1024/ny.png",
+  "/textures/environmentMaps/1/1024/pz.png",
+  "/textures/environmentMaps/1/1024/nz.png",
 ]);
 envMap.encoding = THREE.sRGBEncoding;
 
@@ -82,17 +82,17 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.x = 0;
 camera.position.y = 0;
-camera.position.z = 0;
+camera.position.z = 1;
 
-scene.rotation.x = -1.37;
-scene.rotation.y = 0;
-scene.rotation.z = 0;
+scene.rotation.x = -2.02;
+// scene.rotation.y = 0;
+// scene.rotation.z = 0;
 
 scene.add(camera);
 
 // Controls
-//const controls = new OrbitControls(camera, canvas);
-//controls.enableDamping = true;
+// const controls = new OrbitControls(camera, canvas);
+// controls.enableDamping = true;
 
 /* 
   Cursor
