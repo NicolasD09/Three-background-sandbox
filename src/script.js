@@ -110,7 +110,7 @@ window.addEventListener("mousemove", (e) => {
     x: (-cursor.y * 0.1),
     y: cursor.x * 0.1,
     ease: Power0.easeOut,
-    duration: 1.5
+    duration: 1
   });
 });
 /**
