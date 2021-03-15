@@ -107,8 +107,8 @@ window.addEventListener("mousemove", (e) => {
   cursor.x = e.clientX / sizes.width - 0.5;
   cursor.y = -(e.clientY / sizes.height - 0.5);
   gsap.to(camera.rotation, {
-    x: (-cursor.y * 0.07),
-    y: cursor.x * 0.07,
+    x: (-cursor.y * 0.1),
+    y: cursor.x * 0.1,
     ease: Power0.easeOut,
     duration: 1.5
   });
