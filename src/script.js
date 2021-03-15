@@ -8,7 +8,7 @@ const gui = new dat.GUI();
 
 let debugObj = {
   rotationDuration: 1,
-  easing: Power2,
+  multiplier: 0.1
 };
 
 // Textures
@@ -106,11 +106,11 @@ window.addEventListener("mousemove", (e) => {
   cursor.x = e.clientX / sizes.width - 0.5;
   cursor.y = -(e.clientY / sizes.height - 0.5);
   gsap.to(camera.rotation, {
-    x: -cursor.y * 0.1,
-    y: cursor.x * 0.1,
+    x: -cursor.y * debugObj.multiplier,
+    y: cursor.x * debugObj.multiplier,
     ease: Power0.easeIn,
     duration: debugObj.rotationDuration,
-  });
+  })
 });
 /**
  * Renderer
@@ -127,6 +127,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 // console.log(camera.rotation);
 
 gui.add(debugObj, "rotationDuration").min(0).max(3).step(0.01);
+gui.add(debugObj, "multiplier").min(0).max(1.5).step(0.001);
 // gui
 //   .add(debugObj, "easing", {
 //     "Power0":Power0,
